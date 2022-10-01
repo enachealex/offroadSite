@@ -1,0 +1,263 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Draw Attention\n"
+"POT-Creation-Date: 2015-06-12 14:52-0500\n"
+"PO-Revision-Date: 2015-05-07 16:19-0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: public/includes/lib/CMB2\n"
+"X-Poedit-SearchPathExcluded-2: public/includes/lib/drag-drop-featured-image/"
+"assets/views\n"
+
+#: admin/class-drawattention-admin.php:187
+#: admin/class-drawattention-admin.php:188
+msgid "DrawAttention"
+msgstr ""
+
+#: admin/class-drawattention-admin.php:217
+msgid "Settings"
+msgstr ""
+
+#: admin/class-drawattention-admin.php:229 public/class-drawattention.php:367
+#: public/includes/cpt.php:37
+msgid "Edit Image"
+msgstr ""
+
+#: admin/upsell-admin.php:19 admin/upsell-admin.php:34
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: public/class-drawattention.php:365
+msgid "You need to define some clickable areas for your image."
+msgstr ""
+
+#: public/class-drawattention.php:450
+msgid "Copy Shortcode"
+msgstr ""
+
+#: public/includes/cpt.php:31
+msgid "Draw Attention"
+msgstr ""
+
+#: public/includes/cpt.php:32 public/includes/cpt.php:130
+#: public/includes/lib/drag-drop-featured-image/index.php:138
+msgid "Image"
+msgstr ""
+
+#: public/includes/cpt.php:33
+msgid "All Images"
+msgstr ""
+
+#: public/includes/cpt.php:34
+msgid "Add New"
+msgstr ""
+
+#: public/includes/cpt.php:35
+msgid "Add New Image"
+msgstr ""
+
+#: public/includes/cpt.php:36
+msgid "Edit"
+msgstr ""
+
+#: public/includes/cpt.php:38
+msgid "New Image"
+msgstr ""
+
+#: public/includes/cpt.php:39
+msgid "View Image"
+msgstr ""
+
+#: public/includes/cpt.php:40
+msgid "Search Images"
+msgstr ""
+
+#: public/includes/cpt.php:41
+msgid "Nothing found in the Database."
+msgstr ""
+
+#: public/includes/cpt.php:42
+msgid "Nothing found in Trash"
+msgstr ""
+
+#: public/includes/cpt.php:45
+msgid "Stores "
+msgstr ""
+
+#: public/includes/custom_fields.php:54 public/includes/custom_fields.php:215
+msgid "Hotspot Areas"
+msgstr ""
+
+#: public/includes/custom_fields.php:65
+msgid "Highlight Styling"
+msgstr ""
+
+#: public/includes/custom_fields.php:72
+msgid "Highlight Color"
+msgstr ""
+
+#: public/includes/custom_fields.php:79
+msgid "Highlight Opacity"
+msgstr ""
+
+#: public/includes/custom_fields.php:87
+msgid "Border Color"
+msgstr ""
+
+#: public/includes/custom_fields.php:94
+msgid "Border Opacity"
+msgstr ""
+
+#: public/includes/custom_fields.php:101
+msgid "Border Width"
+msgstr ""
+
+#: public/includes/custom_fields.php:121
+msgid "More Info Box Styling"
+msgstr ""
+
+#: public/includes/custom_fields.php:128
+msgid "Title Color"
+msgstr ""
+
+#: public/includes/custom_fields.php:129
+msgid "Set the color of titles in More Info box"
+msgstr ""
+
+#: public/includes/custom_fields.php:136
+msgid "Text Color"
+msgstr ""
+
+#: public/includes/custom_fields.php:137
+msgid "Set the color of body text in More Info box"
+msgstr ""
+
+#: public/includes/custom_fields.php:144
+msgid "Background Color"
+msgstr ""
+
+#: public/includes/custom_fields.php:145
+msgid "Set the background color of the More Info box"
+msgstr ""
+
+#: public/includes/custom_fields.php:152
+msgid "Default More Info"
+msgstr ""
+
+#: public/includes/custom_fields.php:153
+msgid "Set the text to show up in the more info box (when no area is selected)"
+msgstr ""
+
+#: public/includes/custom_fields.php:171 public/includes/custom_fields.php:239
+msgid "Title"
+msgstr ""
+
+#: public/includes/custom_fields.php:182 public/includes/custom_fields.php:244
+msgid "Description"
+msgstr ""
+
+#: public/includes/custom_fields.php:193 public/includes/custom_fields.php:231
+msgid "Coordinates"
+msgstr ""
+
+#: public/includes/custom_fields.php:221
+msgid "Draw the clickable areas of your image"
+msgstr ""
+
+#: public/includes/custom_fields.php:223
+msgid "Clickable Area #{#}"
+msgstr ""
+
+#: public/includes/custom_fields.php:224
+msgid "Add Another Area"
+msgstr ""
+
+#: public/includes/custom_fields.php:225
+msgid "Remove Area"
+msgstr ""
+
+#: public/includes/custom_fields.php:264
+msgid "Detail Image"
+msgstr ""
+
+#: public/includes/custom_fields.php:265
+msgid "Upload an image or enter a URL to show in the more info box"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:173
+#: public/includes/lib/drag-drop-featured-image/index.php:174
+msgid "Set featured image"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:243
+msgid "Remove image"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:255
+msgid "Drop image here"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:256
+msgctxt "Uploader: Drop files here - or - Select Files"
+msgid "or"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:257
+msgid "Upload Image"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:263
+#: public/includes/lib/drag-drop-featured-image/index.php:267
+msgid "Media Library"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:294
+msgid "Allowed Files"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:344
+msgid "You may only upload one image at a time!"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:359
+msgid "The file you selected exceeds the maximum filesize limit."
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:512
+msgid ""
+"Drag & Drop Feaured image: Unknown post och attachment ID, please try again!"
+msgstr ""
+
+#: public/includes/lib/drag-drop-featured-image/index.php:537
+msgid "Drag & Drop Feaured image: An error occured, please reload page!"
+msgstr ""
+
+#: public/includes/themes.php:13
+msgid "Apply Color Scheme"
+msgstr ""
+
+#: public/includes/themes.php:17
+msgid "Quickly apply a theme (you can adjust each color afterwards)."
+msgstr ""
+
+#: public/includes/themes.php:19
+msgid "Select a theme..."
+msgstr ""
+
+#: public/views/single-da_image.php:15
+msgid "Edit Interactive Image"
+msgstr ""
