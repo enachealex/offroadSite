@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import adventures from "../data/adventures";
+import adventures, { trips } from "../data/adventures";
 import AdventureCard from "../components/AdventureCard";
 import "./Home.css";
 
-const featured = adventures.slice(0, 3);
+const recent = [...adventures].reverse().slice(0, 3);
 
 export default function Home() {
   return (
@@ -14,14 +14,18 @@ export default function Home() {
         <div className="hero-content">
           <h1>Offroad Adventures</h1>
           <p className="hero-subtitle">Exploring trails, conquering terrain, and chasing horizons.</p>
-          <Link to="/adventures" className="hero-cta">View Adventures</Link>
+          <div className="hero-buttons">
+            <Link to="/adventures" className="hero-cta">View Adventures</Link>
+            <Link to="/videos" className="hero-cta hero-cta-outline">Videos</Link>
+            <Link to="/about" className="hero-cta hero-cta-outline">About</Link>
+          </div>
         </div>
       </section>
 
       <section className="section featured-section">
         <h2 className="section-title">Recent Adventures</h2>
         <div className="featured-grid">
-          {featured.map((adv) => (
+          {recent.map((adv) => (
             <AdventureCard key={adv.id} adventure={adv} eager />
           ))}
         </div>
@@ -37,11 +41,11 @@ export default function Home() {
             <span className="stat-label">Photos</span>
           </div>
           <div className="stat">
-            <span className="stat-number">2</span>
+            <span className="stat-number">{trips.length}</span>
             <span className="stat-label">Trips</span>
           </div>
           <div className="stat">
-            <span className="stat-number">2021</span>
+            <span className="stat-number">{new Date(Math.min(...adventures.map((a) => new Date(a.date)))).getFullYear()}</span>
             <span className="stat-label">Since</span>
           </div>
         </div>

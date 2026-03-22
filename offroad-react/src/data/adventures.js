@@ -10,15 +10,6 @@ const adventures = [
   },
   {
     id: 2,
-    title: "Midday Crawl",
-    date: "July 24, 2021",
-    location: "Rocky Terrain",
-    description: "Pushing through rocky terrain in the afternoon sun. Testing the suspension and getting into some serious crawling.",
-    image: "/images/adventures/20210724_133408.jpg",
-    trip: "july-2021",
-  },
-  {
-    id: 3,
     title: "Rock Garden",
     date: "July 24, 2021",
     location: "Rock Garden Section",
@@ -27,7 +18,7 @@ const adventures = [
     trip: "july-2021",
   },
   {
-    id: 4,
+    id: 3,
     title: "Golden Hour Ride",
     date: "September 17, 2021",
     location: "Backcountry Trail",
@@ -36,16 +27,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 5,
-    title: "Dust Storm",
-    date: "September 17, 2021",
-    location: "Desert Trail",
-    description: "Kicking up dust on the open desert trail. Visibility low, adrenaline high.",
-    image: "/images/adventures/20210917_173332.jpg",
-    trip: "sept-2021",
-  },
-  {
-    id: 6,
+    id: 4,
     title: "Sunset Overlook",
     date: "September 17, 2021",
     location: "Hilltop Overlook",
@@ -54,7 +36,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 7,
+    id: 5,
     title: "Evening Trail",
     date: "September 17, 2021",
     location: "Wooded Trail",
@@ -63,7 +45,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 8,
+    id: 6,
     title: "Night Run",
     date: "September 17, 2021",
     location: "Night Trail",
@@ -72,7 +54,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 9,
+    id: 7,
     title: "Last Light",
     date: "September 17, 2021",
     location: "Camp Approach",
@@ -81,7 +63,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 10,
+    id: 8,
     title: "Morning at Camp",
     date: "September 18, 2021",
     location: "Base Camp",
@@ -90,7 +72,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 11,
+    id: 9,
     title: "Trail Exploration",
     date: "September 18, 2021",
     location: "New Trail",
@@ -99,16 +81,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 12,
-    title: "Valley Crossing",
-    date: "September 18, 2021",
-    location: "Valley Floor",
-    description: "Crossing through the valley floor with views stretching for miles.",
-    image: "/images/adventures/20210918_124954.jpg",
-    trip: "sept-2021",
-  },
-  {
-    id: 13,
+    id: 10,
     title: "Panoramic Views",
     date: "September 18, 2021",
     location: "Ridge Line",
@@ -117,7 +90,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 14,
+    id: 11,
     title: "Afternoon Run",
     date: "September 18, 2021",
     location: "Desert Wash",
@@ -126,7 +99,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 15,
+    id: 12,
     title: "Sunday Cruise",
     date: "September 19, 2021",
     location: "Scenic Route",
@@ -135,7 +108,7 @@ const adventures = [
     trip: "sept-2021",
   },
   {
-    id: 16,
+    id: 13,
     title: "Final Send",
     date: "September 19, 2021",
     location: "Last Trail",

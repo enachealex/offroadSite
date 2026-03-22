@@ -21,11 +21,42 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-top: 65px;
 }
 
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Global page header styles */
+.page-header {
+  text-align: center;
+  padding: 1.5rem 0 1.25rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 0.5rem;
+}
+
+.page-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .page-header h1 {
+    font-size: 1.75rem;
+  }
+  .page-header p {
+    font-size: 0.9rem;
+  }
 }
 
 a {

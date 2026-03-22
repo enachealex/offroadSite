@@ -97,6 +97,29 @@
 @media (max-width: 640px) {
   .lightbox-nav {
     font-size: 2rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
+  }
+  .lightbox-prev {
+    left: 0.25rem;
+  }
+  .lightbox-next {
+    right: 0.25rem;
+  }
+  .lightbox-close {
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 2rem;
+  }
+  .lightbox-content {
+    max-width: 95vw;
+  }
+  .lightbox-content img {
+    max-height: 65vh;
+  }
+  .lightbox-caption h3 {
+    font-size: 0.95rem;
+  }
+  .lightbox-caption p {
+    font-size: 0.8rem;
   }
 }

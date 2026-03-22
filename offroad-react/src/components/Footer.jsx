@@ -2,7 +2,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" onContextMenu={(e) => e.preventDefault()}>
       <div className="footer-content">
         <p>&copy; {new Date().getFullYear()} Offroad Adventures. All rights reserved.</p>
       </div>

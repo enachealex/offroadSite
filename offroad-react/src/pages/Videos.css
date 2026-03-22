@@ -44,3 +44,24 @@
   line-height: 1.6;
   margin: 0;
 }
+
+@media (max-width: 640px) {
+  .videos-page {
+    padding: 1.5rem 1rem;
+  }
+  .videos-placeholder {
+    min-height: 300px;
+    padding: 2rem 1.25rem;
+  }
+  .videos-placeholder h2 {
+    font-size: 1.35rem;
+  }
+  .videos-placeholder p {
+    font-size: 0.9rem;
+  }
+  .placeholder-icon {
+    width: 72px;
+    height: 72px;
+    font-size: 2.5rem;
+  }
+}
