@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="home">
       <section className="hero">
-        <div className="hero-bg" style={{ backgroundImage: "url(/images/adventures/20210918_125117.jpg)" }} />
+        <div className="hero-bg" style={{ backgroundImage: `url(/images/adventures/September%202021%20Weekend/20210918_125117.jpg)` }} />
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1>Offroad Adventures</h1>
