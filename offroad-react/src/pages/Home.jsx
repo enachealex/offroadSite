@@ -15,7 +15,7 @@ export default function Home() {
           <h1>Offroad Adventures</h1>
           <p className="hero-subtitle">Exploring trails, conquering terrain, and chasing horizons.</p>
           <div className="hero-buttons">
-            <Link to="/adventures" className="hero-cta">View Adventures</Link>
+            <Link to="/adventures" className="hero-cta hero-cta-outline">View Adventures</Link>
             <Link to="/videos" className="hero-cta hero-cta-outline">Videos</Link>
             <Link to="/about" className="hero-cta hero-cta-outline">About</Link>
           </div>

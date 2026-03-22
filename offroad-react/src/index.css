@@ -1,3 +1,14 @@
+@import "tailwindcss";
+
+/* Custom theme tokens for Tailwind */
+@theme {
+  --color-gold: #e8a838;
+  --color-gold-dark: #c4872c;
+  --color-dark: #121212;
+  --color-dark-surface: #1a1a1a;
+  --color-dark-card: #1e1e1e;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
