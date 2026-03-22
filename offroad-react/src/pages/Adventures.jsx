@@ -40,7 +40,7 @@ export default function Adventures() {
       <div className="adventures-grid">
         {filtered.map((adv, idx) => (
           <div key={adv.id} onClick={() => setLightboxIndex(idx)} onKeyDown={(e) => { if (e.key === 'Enter') setLightboxIndex(idx); }} role="button" tabIndex={0} className="adventure-click">
-            <AdventureCard adventure={adv} />
+            <AdventureCard adventure={adv} eager={idx < 6} />
           </div>
         ))}
       </div>

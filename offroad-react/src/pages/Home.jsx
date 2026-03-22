@@ -22,7 +22,7 @@ export default function Home() {
         <h2 className="section-title">Recent Adventures</h2>
         <div className="featured-grid">
           {featured.map((adv) => (
-            <AdventureCard key={adv.id} adventure={adv} />
+            <AdventureCard key={adv.id} adventure={adv} eager />
           ))}
         </div>
         <div className="section-cta">

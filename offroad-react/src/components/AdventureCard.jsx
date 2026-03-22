@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./AdventureCard.css";
 
-export default function AdventureCard({ adventure }) {
+export default function AdventureCard({ adventure, eager = false }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -13,7 +13,8 @@ export default function AdventureCard({ adventure }) {
           src={adventure.image}
           alt={adventure.title}
           className={`card-image ${loaded ? "loaded" : ""}`}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
           onLoad={() => setLoaded(true)}
         />
         <div className="card-overlay">
@@ -37,4 +38,5 @@ AdventureCard.propTypes = {
     location: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  eager: PropTypes.bool,
 };
