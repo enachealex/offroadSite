@@ -38,7 +38,10 @@ jobs:
         run: npm run build
 
       - name: Copy CNAME into dist
-        run: cp CNAME offroad-react/dist/CNAME
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME offroad-react/dist/CNAME
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
