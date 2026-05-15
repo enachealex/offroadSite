@@ -1,11 +1,30 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, startTransition } from "react";
+import { useLocation } from "react-router-dom";
 import adventures, { trips } from "../data/adventures";
 import Lightbox from "../components/Lightbox";
 import "./Adventures.css";
 
+function getInitialTripId(stateTripId) {
+  if (trips.some((trip) => trip.id === stateTripId)) {
+    return stateTripId;
+  }
+  return trips.at(-1).id;
+}
+
+function getPhotoIndexForTrip(tripId, statePhotoId) {
+  const photosInTrip = adventures.filter((adventure) => adventure.trip === tripId);
+  const idx = photosInTrip.findIndex((photo) => photo.id === statePhotoId);
+  return Math.max(idx, 0);
+}
+
 export default function Adventures() {
-  const [activeTripId, setActiveTripId] = useState(trips[trips.length - 1].id);
-  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const location = useLocation();
+  const initialTripId = getInitialTripId(location.state?.tripId);
+
+  const [activeTripId, setActiveTripId] = useState(initialTripId);
+  const [featuredIndex, setFeaturedIndex] = useState(
+    getPhotoIndexForTrip(initialTripId, location.state?.photoId),
+  );
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const activeTrip = trips.find((t) => t.id === activeTripId);
@@ -52,13 +71,25 @@ export default function Adventures() {
   // Track intended scroll target so rapid key presses don't read stale scrollLeft
   const scrollTarget = useRef(null);
 
+  useEffect(() => {
+    const stateTripId = location.state?.tripId;
+    if (!trips.some((trip) => trip.id === stateTripId)) {
+      return;
+    }
+
+    startTransition(() => {
+      setActiveTripId(stateTripId);
+      setFeaturedIndex(getPhotoIndexForTrip(stateTripId, location.state?.photoId));
+    });
+  }, [location.state]);
+
   // Auto-scroll thumbnail strip: page on desktop, scrollIntoView on mobile
   useEffect(() => {
     const el = thumbRefs.current[featuredIndex];
     const container = thumbsContainerRef.current;
     if (!el || !container) return;
 
-    const isDesktop = window.matchMedia("(min-width: 641px)").matches;
+    const isDesktop = globalThis.matchMedia("(min-width: 641px)").matches;
     if (isDesktop) {
       const prev = prevFeaturedIndex.current;
       const isWrap =
@@ -66,7 +97,7 @@ export default function Adventures() {
         (prev === 0 && featuredIndex === tripPhotos.length - 1);
 
       // Use the intended target if mid-animation, otherwise read from DOM
-      const viewLeft = scrollTarget.current !== null ? scrollTarget.current : container.scrollLeft;
+      const viewLeft = scrollTarget.current === null ? container.scrollLeft : scrollTarget.current;
       const pageWidth = container.clientWidth;
       const elLeft = el.offsetLeft - container.offsetLeft;
       const elRight = elLeft + el.offsetWidth;
@@ -124,12 +155,12 @@ export default function Adventures() {
         handleTripChange(trips[next].id);
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    globalThis.addEventListener("keydown", handleKeyDown);
+    return () => globalThis.removeEventListener("keydown", handleKeyDown);
   }, [activeTripId, tripPhotos.length, lightboxIndex]);
 
   return (
-    <div className="adventures-page" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}>
+    <div className="adventures-page">
       <div className="gallery-layout">
         {/* Sidebar — trip list */}
         <aside className="gallery-sidebar">
@@ -174,17 +205,21 @@ export default function Adventures() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <img
-              src={featured.image}
-              alt={featured.title}
-              className="featured-image"
-              loading="eager"
-              draggable="false"
+            <button
+              className="featured-image-btn"
               onClick={() => { if (!swiping.current) openLightbox(featuredIndex); }}
-              role="button"
-              tabIndex={0}
               onKeyDown={(e) => { if (e.key === "Enter") openLightbox(featuredIndex); }}
-            />
+              aria-label={`View ${featured.title} fullscreen`}
+              tabIndex={0}
+            >
+              <img
+                src={featured.image}
+                alt={featured.title}
+                className="featured-image"
+                loading="eager"
+                draggable="false"
+              />
+            </button>
             <button
               className="featured-nav featured-prev"
               onClick={() => setFeaturedIndex((i) => (i - 1 + tripPhotos.length) % tripPhotos.length)}

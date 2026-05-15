@@ -15,7 +15,7 @@ export default function Home() {
           <h1>Offroad Adventures</h1>
           <p className="hero-subtitle">Exploring trails, conquering terrain, and chasing horizons.</p>
           <div className="hero-buttons">
-            <Link to="/adventures" className="hero-cta hero-cta-outline">View Adventures</Link>
+            <Link to="/adventures" className="hero-cta hero-cta-outline">Adventures</Link>
             <Link to="/videos" className="hero-cta hero-cta-outline">Videos</Link>
             <Link to="/about" className="hero-cta hero-cta-outline">About</Link>
           </div>
@@ -26,7 +26,14 @@ export default function Home() {
         <h2 className="section-title">Recent Adventures</h2>
         <div className="featured-grid">
           {recent.map((adv) => (
-            <AdventureCard key={adv.id} adventure={adv} eager />
+            <Link
+              key={adv.id}
+              to="/adventures"
+              state={{ tripId: adv.trip, photoId: adv.id }}
+              className="featured-link"
+            >
+              <AdventureCard adventure={adv} eager />
+            </Link>
           ))}
         </div>
         <div className="section-cta">

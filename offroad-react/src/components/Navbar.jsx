@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
 
-  // Close menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
+  const closeMenu = () => setMenuOpen(false);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -32,10 +28,10 @@ export default function Navbar() {
       </button>
       {menuOpen && <div className="navbar-backdrop" onClick={() => setMenuOpen(false)} />}
       <div className={`navbar-links ${menuOpen ? "navbar-links-open" : ""}`}>
-        <NavLink to="/" end>Home</NavLink>
-        <NavLink to="/adventures">Adventures</NavLink>
-        <NavLink to="/videos">Videos</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/" end onClick={closeMenu}>Home</NavLink>
+        <NavLink to="/adventures" onClick={closeMenu}>Adventures</NavLink>
+        <NavLink to="/videos" onClick={closeMenu}>Videos</NavLink>
+        <NavLink to="/about" onClick={closeMenu}>About</NavLink>
       </div>
     </nav>
   );
