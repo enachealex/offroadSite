@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -144,8 +144,8 @@ function AppShell() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppShell />
-    </BrowserRouter>
+    </HashRouter>
   );
 }

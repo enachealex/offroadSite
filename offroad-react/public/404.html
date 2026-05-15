@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Offroad Adventures</title>
+    <meta http-equiv="refresh" content="0; URL='/#/'" />
+    <script>
+      const locationRef = window.location;
+      const normalizedPath = locationRef.pathname.startsWith("/") ? locationRef.pathname : `/${locationRef.pathname}`;
+      const newUrl = `${locationRef.protocol}//${locationRef.host}/#${normalizedPath}${locationRef.search}${locationRef.hash}`;
+
+      locationRef.replace(newUrl);
+    </script>
+  </head>
+  <body></body>
+</html>
