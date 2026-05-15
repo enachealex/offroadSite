@@ -43,6 +43,9 @@ jobs:
             cp CNAME offroad-react/dist/CNAME
           fi
 
+      - name: Add SPA fallback page
+        run: cp offroad-react/dist/index.html offroad-react/dist/404.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
