@@ -40,7 +40,7 @@ export default function Videos() {
     ? `https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`
     : "";
   const videoUrl = canPlaySelectedVideo
-    ? `https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&origin=${encodeURIComponent(
+    ? `https://www.youtube-nocookie.com/embed/${selectedVideo.youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&origin=${encodeURIComponent(
         origin,
       )}&widget_referrer=${encodeURIComponent(origin)}`
     : "";
