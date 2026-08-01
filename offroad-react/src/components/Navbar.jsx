@@ -14,7 +14,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="navbar" onContextMenu={(e) => e.preventDefault()}>
+    <nav className="navbar">
       <Link to="/" className="navbar-brand">
         <img src="/images/branding/offroad-logo.png" alt="Offroad Adventures" className="navbar-logo" />
         <span className="navbar-title">Offroad Adventures</span>

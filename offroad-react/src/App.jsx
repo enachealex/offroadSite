@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
-import { HashRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -10,53 +10,12 @@ const About = lazy(() => import("./pages/About"));
 
 function AppShell() {
   const navigate = useNavigate();
-  const location = useLocation();
   const touchStateRef = useRef({
     active: false,
     startX: 0,
     startY: 0,
     startedAt: 0,
   });
-
-  useEffect(() => {
-    const onContextMenu = (event) => {
-      const allowContextMenu = event.target.closest('[data-allow-context-menu="true"]');
-      if (allowContextMenu) {
-        return;
-      }
-      event.preventDefault();
-    };
-
-    document.addEventListener("contextmenu", onContextMenu);
-
-    return () => {
-      document.removeEventListener("contextmenu", onContextMenu);
-    };
-  }, []);
-
-  useEffect(() => {
-    const onKeyDown = (event) => {
-      if (!location.pathname.startsWith("/videos")) {
-        return;
-      }
-
-      const key = event.key.toLowerCase();
-      const hasPrimaryModifier = event.ctrlKey || event.metaKey;
-      const isSave = hasPrimaryModifier && key === "s";
-      const isViewSource = hasPrimaryModifier && key === "u";
-      const isDevToolsShortcut = (hasPrimaryModifier && event.shiftKey && key === "i") || event.key === "F12";
-
-      if (isSave || isViewSource || isDevToolsShortcut) {
-        event.preventDefault();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [location.pathname]);
 
   useEffect(() => {
     const supportsTouch = "ontouchstart" in globalThis;
