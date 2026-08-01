@@ -66,14 +66,12 @@
 .featured-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
   pointer-events: none;
 }
 
 @media (hover: hover) {
-  .gallery-featured:hover .featured-image {
-    transition: transform 0.3s ease;
+  .gallery-featured:hover .featured-image .picture-img {
+    transition: opacity 0.4s ease, transform 0.3s ease;
     transform: scale(1.02);
   }
 }
@@ -118,6 +116,17 @@
 
 .gallery-featured:hover .featured-nav {
   opacity: 1;
+}
+
+.featured-nav:focus-visible {
+  opacity: 1;
+}
+
+/* Without hover there is nothing to reveal the arrows, so keep them visible. */
+@media (hover: none) {
+  .featured-nav {
+    opacity: 0.9;
+  }
 }
 
 .featured-nav:hover {
@@ -186,11 +195,9 @@
   transition: border-color 0.15s, opacity 0.15s;
 }
 
-.thumb img {
+.thumb .picture {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
   pointer-events: none;
 }
 
@@ -261,7 +268,6 @@
 .trip-card-img {
   width: 56px;
   height: 56px;
-  object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
   pointer-events: none;

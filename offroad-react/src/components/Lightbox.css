@@ -60,11 +60,19 @@
   align-items: center;
 }
 
-.lightbox-content img {
+.lightbox-picture {
   max-width: 100%;
   max-height: 75vh;
-  object-fit: contain;
   border-radius: 4px;
+  background-color: transparent;
+}
+
+/* Show the whole frame rather than cropping it, unlike the grid thumbnails. */
+.lightbox-picture .picture-img {
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .lightbox-caption {
@@ -113,7 +121,8 @@
   .lightbox-content {
     max-width: 95vw;
   }
-  .lightbox-content img {
+  .lightbox-picture,
+  .lightbox-picture .picture-img {
     max-height: 65vh;
   }
   .lightbox-caption h3 {
@@ -122,4 +131,11 @@
   .lightbox-caption p {
     font-size: 0.8rem;
   }
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  opacity: 1;
+  outline: 2px solid #e8a838;
+  outline-offset: 3px;
 }

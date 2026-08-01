@@ -2,7 +2,14 @@ import { useState, useRef, useCallback, useEffect, startTransition } from "react
 import { useLocation } from "react-router-dom";
 import adventures, { trips } from "../data/adventures";
 import Lightbox from "../components/Lightbox";
+import Picture from "../components/Picture";
 import "./Adventures.css";
+
+// The featured photo fills the gallery column: full width on phones, and the
+// viewport minus the trip sidebar on desktop.
+const FEATURED_SIZES = "(max-width: 900px) 100vw, (max-width: 1500px) 66vw, 1040px";
+const THUMB_SIZES = "160px";
+const TRIP_PREVIEW_SIZES = "96px";
 
 function getInitialTripId(stateTripId) {
   if (trips.some((trip) => trip.id === stateTripId)) {
@@ -41,6 +48,7 @@ export default function Adventures() {
   // Ref for thumbnail auto-scroll
   const thumbRefs = useRef([]);
   const thumbsContainerRef = useRef(null);
+  const galleryRef = useRef(null);
 
   // Simple swipe detection for mobile
   const touchStartX = useRef(null);
@@ -135,13 +143,26 @@ export default function Adventures() {
     return () => container.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Keyboard shortcuts: arrows to navigate photos and trips
+  // Keyboard shortcuts: arrows to navigate photos and trips.
+  //
+  // Scoped to the gallery rather than the window — a global handler that
+  // preventDefault()s ArrowUp/ArrowDown makes the page impossible to scroll
+  // with the keyboard, which is a much bigger problem than the shortcut is a
+  // convenience.
   useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return undefined;
+
     const handleKeyDown = (e) => {
       if (lightboxIndex !== null) return; // let lightbox handle its own keys
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      if (!gallery.contains(document.activeElement)) return;
+
       if (e.key === "ArrowLeft") {
+        e.preventDefault();
         setFeaturedIndex((i) => (i - 1 + tripPhotos.length) % tripPhotos.length);
       } else if (e.key === "ArrowRight") {
+        e.preventDefault();
         setFeaturedIndex((i) => (i + 1) % tripPhotos.length);
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
@@ -155,35 +176,39 @@ export default function Adventures() {
         handleTripChange(trips[next].id);
       }
     };
-    globalThis.addEventListener("keydown", handleKeyDown);
-    return () => globalThis.removeEventListener("keydown", handleKeyDown);
+    gallery.addEventListener("keydown", handleKeyDown);
+    return () => gallery.removeEventListener("keydown", handleKeyDown);
   }, [activeTripId, tripPhotos.length, lightboxIndex]);
 
   return (
-    <div className="adventures-page">
+    <div className="adventures-page" ref={galleryRef}>
       <div className="gallery-layout">
         {/* Sidebar — trip list */}
         <aside className="gallery-sidebar">
-          <h3 className="sidebar-heading">Trips</h3>
-          <ul className="trip-list">
+          <h3 className="sidebar-heading" id="trip-list-heading">Trips</h3>
+          <ul className="trip-list" aria-labelledby="trip-list-heading">
             {trips.map((trip) => {
               const preview = adventures.find((a) => a.trip === trip.id);
+              const isActive = trip.id === activeTripId;
               return (
                 <li key={trip.id}>
                   <button
-                    className={`trip-card ${trip.id === activeTripId ? "trip-card-active" : ""}`}
+                    className={`trip-card ${isActive ? "trip-card-active" : ""}`}
                     onClick={() => handleTripChange(trip.id)}
+                    aria-current={isActive ? "true" : undefined}
                   >
-                    <img
-                      src={preview?.image}
-                      alt={trip.name}
-                      className="trip-card-img"
-                      loading="lazy"
-                    />
+                    {preview && (
+                      <Picture
+                        photo={preview}
+                        sizes={TRIP_PREVIEW_SIZES}
+                        alt=""
+                        className="trip-card-img"
+                      />
+                    )}
                     <div className="trip-card-info">
                       <span className="trip-card-name">{trip.name}</span>
                       <span className="trip-card-count">
-                        {adventures.filter((a) => a.trip === trip.id).length} photos
+                        {trip.photoCount} photos
                       </span>
                     </div>
                   </button>
@@ -208,16 +233,13 @@ export default function Adventures() {
             <button
               className="featured-image-btn"
               onClick={() => { if (!swiping.current) openLightbox(featuredIndex); }}
-              onKeyDown={(e) => { if (e.key === "Enter") openLightbox(featuredIndex); }}
               aria-label={`View ${featured.title} fullscreen`}
-              tabIndex={0}
             >
-              <img
-                src={featured.image}
-                alt={featured.title}
+              <Picture
+                photo={featured}
+                sizes={FEATURED_SIZES}
+                priority
                 className="featured-image"
-                loading="eager"
-                draggable="false"
               />
             </button>
             <button
@@ -234,6 +256,10 @@ export default function Adventures() {
               <h2>{featured.title}</h2>
               <span>{featured.location}</span>
             </div>
+            {/* Announce photo changes for screen readers without moving focus. */}
+            <p className="sr-only" aria-live="polite">
+              {`Photo ${featuredIndex + 1} of ${tripPhotos.length}: ${featured.title}`}
+            </p>
           </div>
 
           {/* Thumbnail grid */}
@@ -244,12 +270,14 @@ export default function Adventures() {
                 ref={(el) => (thumbRefs.current[idx] = el)}
                 className={`thumb ${idx === featuredIndex ? "thumb-active" : ""}`}
                 onClick={() => setFeaturedIndex(idx)}
+                aria-label={`Show ${adv.title}`}
+                aria-current={idx === featuredIndex ? "true" : undefined}
               >
-                <img
-                  src={adv.image}
-                  alt={adv.title}
-                  loading={idx < 6 ? "eager" : "lazy"}
-                  decoding="async"
+                <Picture
+                  photo={adv}
+                  sizes={THUMB_SIZES}
+                  alt=""
+                  priority={idx < 6}
                 />
               </button>
             ))}

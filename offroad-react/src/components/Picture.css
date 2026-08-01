@@ -1,0 +1,40 @@
+.picture {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--picture-ratio);
+  background-color: #1a1a1a;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.picture picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.picture-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.picture.is-loaded .picture-img {
+  opacity: 1;
+}
+
+/* The blurred preview only needs to survive until the real file paints. */
+.picture.is-loaded {
+  background-image: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .picture-img {
+    transition: none;
+  }
+}

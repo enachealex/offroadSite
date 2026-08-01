@@ -1,15 +1,27 @@
 import { Link } from "react-router-dom";
 import adventures, { trips } from "../data/adventures";
 import AdventureCard from "../components/AdventureCard";
+import Picture from "../components/Picture";
 import "./Home.css";
 
-const recent = [...adventures].reverse().slice(0, 3);
+// Photos arrive sorted oldest-first, so the tail is the newest work.
+const recent = adventures.slice(-3).reverse();
+
+const hero = adventures.find((photo) => photo.featured) ?? adventures.at(-1);
+
+const firstYear = adventures
+  .map((photo) => photo.sortDate)
+  .filter(Boolean)
+  .sort()[0]
+  ?.slice(0, 4);
 
 export default function Home() {
   return (
     <div className="home">
       <section className="hero">
-        <div className="hero-bg" style={{ backgroundImage: `url(/images/adventures/September%202021%20Weekend/20210918_125117.jpg)` }} />
+        {/* An <img> rather than a CSS background so the browser can pick a file
+            that matches the viewport instead of upscaling one fixed size. */}
+        <Picture photo={hero} sizes="100vw" priority alt="" className="hero-bg" />
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1>Offroad Adventures</h1>
@@ -52,7 +64,7 @@ export default function Home() {
             <span className="stat-label">Trips</span>
           </div>
           <div className="stat">
-            <span className="stat-number">{new Date(Math.min(...adventures.map((a) => new Date(a.date)))).getFullYear()}</span>
+            <span className="stat-number">{firstYear}</span>
             <span className="stat-label">Since</span>
           </div>
         </div>

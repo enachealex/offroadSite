@@ -1,4 +1,12 @@
+import adventures from "../data/adventures";
+import Picture from "../components/Picture";
 import "./About.css";
+
+// Pulled from the gallery data rather than hardcoded, so the path can never
+// drift out of sync with the generated files again.
+const portrait = adventures.find((photo) => photo.title === "Valley of Fog") ?? adventures.at(-1);
+
+const ABOUT_SIZES = "(max-width: 768px) 92vw, 440px";
 
 export default function About() {
   return (
@@ -9,7 +17,7 @@ export default function About() {
 
       <div className="about-content">
         <div className="about-image">
-          <img src="/images/adventures/20210917_175403.jpg" alt="Out on the trail" />
+          <Picture photo={portrait} sizes={ABOUT_SIZES} alt="Out on the trail" />
         </div>
         <div className="about-text">
           <h2>The Adventure Starts Here</h2>

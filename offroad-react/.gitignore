@@ -23,6 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local-only sample media links (never ship to production)
-public/videos/gopro-source/
-public/videos/douglas-creek/

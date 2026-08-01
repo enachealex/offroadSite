@@ -12,10 +12,9 @@
   margin-top: 1rem;
 }
 
-.about-image img {
+.about-image .picture {
   width: 100%;
   border-radius: 12px;
-  object-fit: cover;
   aspect-ratio: 3 / 4;
 }
 
@@ -68,7 +67,7 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .about-image img {
+  .about-image .picture {
     aspect-ratio: 16 / 9;
   }
   .about-text h2 {

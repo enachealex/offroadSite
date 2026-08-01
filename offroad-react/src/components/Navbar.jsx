@@ -22,12 +22,14 @@ export default function Navbar() {
       <button
         className={`navbar-toggle ${menuOpen ? "open" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="navbar-links"
       >
         <span /><span /><span />
       </button>
       {menuOpen && <div className="navbar-backdrop" onClick={() => setMenuOpen(false)} />}
-      <div className={`navbar-links ${menuOpen ? "navbar-links-open" : ""}`}>
+      <div id="navbar-links" className={`navbar-links ${menuOpen ? "navbar-links-open" : ""}`}>
         <NavLink to="/" end onClick={closeMenu}>Home</NavLink>
         <NavLink to="/adventures" onClick={closeMenu}>Adventures</NavLink>
         <NavLink to="/videos" onClick={closeMenu}>Videos</NavLink>

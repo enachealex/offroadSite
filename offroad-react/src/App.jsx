@@ -126,8 +126,22 @@ function AppShell() {
 
   return (
     <>
+      {/* Under HashRouter the URL hash *is* the route, so a plain
+          href="#main-content" would navigate to a non-existent route and blank
+          the page. Move focus directly instead of touching the hash. */}
+      <button
+        type="button"
+        className="skip-link"
+        onClick={() => {
+          const main = document.getElementById("main-content");
+          main?.focus();
+          main?.scrollIntoView();
+        }}
+      >
+        Skip to content
+      </button>
       <Navbar />
-      <main style={{ flex: 1 }}>
+      <main id="main-content" tabIndex={-1} style={{ flex: 1 }}>
         <Suspense fallback={<div style={{ minHeight: "60vh" }} />}>
           <Routes>
             <Route path="/" element={<Home />} />

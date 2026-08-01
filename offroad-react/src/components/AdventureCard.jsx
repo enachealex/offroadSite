@@ -1,21 +1,20 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
+import Picture from "./Picture";
 import "./AdventureCard.css";
 
-export default function AdventureCard({ adventure, eager = false }) {
-  const [loaded, setLoaded] = useState(false);
+// Cards sit in a 320px-min auto-fill grid, so they are full width on phones and
+// roughly a third of a 1200px container on desktop.
+const CARD_SIZES = "(max-width: 480px) 92vw, (max-width: 1240px) 45vw, 380px";
 
+export default function AdventureCard({ adventure, eager = false }) {
   return (
     <div className="adventure-card">
       <div className="card-image-wrapper">
-        {!loaded && <div className="card-image-placeholder" />}
-        <img
-          src={adventure.image}
-          alt={adventure.title}
-          className={`card-image ${loaded ? "loaded" : ""}`}
-          loading={eager ? "eager" : "lazy"}
-          decoding="async"
-          onLoad={() => setLoaded(true)}
+        <Picture
+          photo={adventure}
+          sizes={CARD_SIZES}
+          priority={eager}
+          className="card-picture"
         />
         <div className="card-overlay">
           <span className="card-date">{adventure.date}</span>
@@ -24,7 +23,7 @@ export default function AdventureCard({ adventure, eager = false }) {
       <div className="card-body">
         <h3 className="card-title">{adventure.title}</h3>
         <p className="card-location">{adventure.location}</p>
-        <p className="card-description">{adventure.description}</p>
+        {adventure.description && <p className="card-description">{adventure.description}</p>}
       </div>
     </div>
   );
@@ -36,7 +35,7 @@ AdventureCard.propTypes = {
     title: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
   }).isRequired,
   eager: PropTypes.bool,
 };

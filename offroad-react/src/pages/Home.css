@@ -11,9 +11,13 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: 100%;
   transform: scale(1.05);
+}
+
+.hero-bg .picture-img {
+  object-position: center;
 }
 
 .hero-overlay {
