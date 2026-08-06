@@ -1,6 +1,7 @@
 {
   "20210917_171521.jpg": {
-    "title": "Tundra Ridge View"
+    "title": "Tundra Ridge View",
+    "featured": true
   },
   "20210917_173339.jpg": {
     "title": "Camp Ridge View"
@@ -24,8 +25,7 @@
     "title": "Keechelus Lake"
   },
   "20210918_125117.jpg": {
-    "title": "Ridge View",
-    "featured": true
+    "title": "Ridge View"
   },
   "20210918_141202.jpg": {
     "title": "Keechelus Lake - Sunny"

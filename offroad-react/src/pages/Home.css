@@ -1,8 +1,11 @@
+/* ── Hero ─────────────────────────────────────────── */
+
 .hero {
   position: relative;
-  height: 80vh;
-  min-height: 500px;
+  min-height: 620px;
+  height: 88vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -13,45 +16,64 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-.hero-bg .picture-img {
-  object-position: center;
-}
-
+/*
+ * Two layered scrims instead of one opaque fade. The vertical pass darkens the
+ * top and bottom just enough for the navbar and the stat strip, and only fully
+ * reaches the page colour in the last few percent — the previous gradient hit
+ * solid #121212 at 60%, which erased the bottom third of the photo.
+ */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(18, 18, 18, 1) 100%
-  );
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 45%, rgba(0, 0, 0, 0.55), transparent 70%),
+    linear-gradient(
+      to bottom,
+      rgba(18, 18, 18, 0.75) 0%,
+      rgba(18, 18, 18, 0.25) 22%,
+      rgba(18, 18, 18, 0.3) 60%,
+      rgba(18, 18, 18, 0.85) 92%,
+      rgba(18, 18, 18, 1) 100%
+    );
 }
 
 .hero-content {
   position: relative;
   text-align: center;
   padding: 0 2rem;
-  max-width: 700px;
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  margin: 0 0 1rem;
+  color: #e8a838;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 .hero-content h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.25rem, 7vw, 4.25rem);
   font-weight: 800;
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
   text-transform: uppercase;
   letter-spacing: 2px;
+  line-height: 1.05;
   color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 2rem;
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 auto 2.25rem;
+  line-height: 1.65;
+  max-width: 34rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero-buttons {
@@ -63,59 +85,186 @@
 
 .hero-cta {
   display: inline-block;
-  padding: 0.85rem 2.5rem;
-  background: #e8a838;
-  color: #000;
+  padding: 0.85rem 2.25rem;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 6px;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
+  border: 2px solid #e8a838;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
 }
 
 .hero-cta:hover {
-  background: #f0b94d;
   transform: translateY(-2px);
 }
 
+.hero-cta-solid {
+  background: #e8a838;
+  color: #121212;
+}
+
+.hero-cta-solid:hover {
+  background: #f0b94d;
+  border-color: #f0b94d;
+}
+
 .hero-cta-outline {
-  background: transparent;
-  border: 2px solid #e8a838;
+  background: rgba(18, 18, 18, 0.35);
   color: #e8a838;
+  backdrop-filter: blur(2px);
 }
 
 .hero-cta-outline:hover {
   background: #e8a838;
-  color: #000;
+  color: #121212;
 }
 
+/* Stat strip anchored to the bottom of the hero, where the scrim is darkest. */
+.hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 8vw, 6rem);
+  padding: 1.5rem 1rem 2rem;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-number {
+  display: block;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: #e8a838;
+  line-height: 1.1;
+}
+
+.hero-stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ── Sections ─────────────────────────────────────── */
+
 .section {
-  padding: 4rem 2rem;
+  padding: 3.25rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 2rem;
+.section-head {
   text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.section-lede {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1rem;
+}
+
+.section-eyebrow {
+  margin: 0 0 0.6rem;
+  color: #e8a838;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* ── Trip tiles ───────────────────────────────────── */
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.trip-tile {
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.trip-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 168, 56, 0.55);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.trip-tile-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.trip-tile-body {
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.trip-tile-count {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(232, 168, 56, 0.14);
+  color: #e8a838;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+.trip-tile-name {
+  margin: 0 0 0.3rem;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.trip-tile-span {
+  margin: 0 0 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trip-tile-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ── Latest photos ────────────────────────────────── */
+
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
 .featured-link {
   display: block;
-  text-decoration: none;
   color: inherit;
 }
 
@@ -134,87 +283,143 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 6px;
-  text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
 
 .btn-secondary:hover {
   background: #e8a838;
-  color: #000;
+  color: #121212;
 }
 
-.stats-section {
+/* ── Featured video ───────────────────────────────── */
+
+.video-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.video-thumb {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #101010;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: rgba(18, 18, 18, 0.72);
+  border: 2px solid #e8a838;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.video-play::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-left: 18px solid #e8a838;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+}
+
+.video-thumb:hover .video-play {
+  background: rgba(232, 168, 56, 0.9);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.video-thumb:hover .video-play::after {
+  border-left-color: #121212;
+}
+
+.video-copy h2 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  color: #fff;
+}
+
+.video-copy p {
+  margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.65;
+}
+
+/* ── About teaser ─────────────────────────────────── */
+
+.about-section {
+  padding-top: 0;
+}
+
+.about-panel {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.stats-grid {
-  display: flex;
-  justify-content: center;
-  gap: 5rem;
+.about-panel h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: #fff;
 }
 
-.stat {
-  text-align: center;
+.about-panel p {
+  margin: 0 0 1.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.75;
 }
 
-.stat-number {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #e8a838;
-}
+/* ── Responsive ───────────────────────────────────── */
 
-.stat-label {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+@media (max-width: 900px) {
+  .video-panel {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
   .hero {
-    height: 60vh;
-    min-height: 400px;
-  }
-  .hero-content h1 {
-    font-size: 2.25rem;
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  .hero-cta {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.85rem;
+    height: 78vh;
+    min-height: 520px;
   }
   .section {
     padding: 3rem 1.25rem;
-  }
-  .section-title {
-    font-size: 1.5rem;
-  }
-  .stats-grid {
-    gap: 2.5rem;
-  }
-  .stat-number {
-    font-size: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    height: 55vh;
-    min-height: 350px;
+    height: 82vh;
+    min-height: 480px;
   }
   .hero-content {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
-  .hero-content h1 {
-    font-size: 1.75rem;
-    letter-spacing: 1px;
-  }
-  .hero-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+  .hero-eyebrow {
+    letter-spacing: 3px;
+    font-size: 0.7rem;
   }
   .hero-buttons {
     flex-direction: column;
@@ -223,24 +428,23 @@
   }
   .hero-cta {
     width: 100%;
-    max-width: 260px;
+    max-width: 300px;
+    padding: 0.85rem 1rem;
     text-align: center;
-    padding: 0.75rem 1rem;
+    letter-spacing: 0.5px;
   }
+  .hero-stats {
+    gap: 2rem;
+    padding: 1rem 1rem 1.5rem;
+  }
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  .trip-grid,
   .featured-grid {
     grid-template-columns: 1fr;
   }
-  .section {
-    padding: 2rem 1rem;
-  }
-  .stats-grid {
-    gap: 1.5rem;
-  }
-  .stat-number {
-    font-size: 1.75rem;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 1px;
+  .video-panel {
+    padding: 1rem;
   }
 }

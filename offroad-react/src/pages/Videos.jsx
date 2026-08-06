@@ -1,64 +1,6 @@
 import { useMemo, useState } from "react";
+import videoCatalog from "../data/videos";
 import "./Videos.css";
-
-const videoCatalog = [
-  {
-    key: "wind-mills-ridge",
-    title: "Wind Mills and Ridge",
-    subtitle: "Ridgeline run through the windmill route",
-    youtubeId: "r8TWAcgmJpc",
-    duration: "7:02",
-  },
-  {
-    key: "olympic-peninsula",
-    title: "Exploring Olympic Peninsula",
-    subtitle: "Forest roads, mountain views, and coastal trail segments",
-    youtubeId: "4oosjksBYqM",
-    duration: "11:35",
-  },
-  {
-    key: "caves-mines-dusty-roads",
-    title: "Caves Mines and Dusty Roads",
-    subtitle: "Backcountry route with caves, mines, and dusty roads",
-    youtubeId: "a1bX5V6n46o",
-    duration: "TBD",
-  },
-  {
-    key: "moses-lake",
-    title: "Moses Lake",
-    subtitle: "Trail run around Moses Lake terrain",
-    youtubeId: "oXM0UGaxeNc",
-    duration: "TBD",
-  },
-  {
-    key: "snow-in-june",
-    title: "Snow in June",
-    subtitle: "Unexpected early summer snow run",
-    youtubeId: "do8xBZwOFSg",
-    duration: "TBD",
-  },
-  {
-    key: "snoqualmie-pass",
-    title: "Snoqualmie Pass",
-    subtitle: "Mountain trail drive through Snoqualmie Pass",
-    youtubeId: "cMHkSfrxg8Y",
-    duration: "TBD",
-  },
-  {
-    key: "stampede-pass-camping",
-    title: "Stampede Pass Camping",
-    subtitle: "Camp and trail mix through Stampede Pass",
-    youtubeId: "HboA9XDpJLw",
-    duration: "TBD",
-  },
-  {
-    key: "next-weekend-crawl",
-    title: "Weekend Rock Crawl",
-    subtitle: "New upload coming soon",
-    youtubeId: "",
-    duration: "TBD",
-  },
-];
 
 export default function Videos() {
   const [selectedKey, setSelectedKey] = useState("");
@@ -144,7 +86,9 @@ export default function Videos() {
                     ) : (
                       <div className="video-card-thumb video-card-thumb-placeholder">Coming Soon</div>
                     )}
-                    <span className="video-card-duration">{video.duration}</span>
+                    {video.duration && (
+                      <span className="video-card-duration">{video.duration}</span>
+                    )}
                   </div>
                   <div className="video-card-meta">
                     <h3>{video.title}</h3>

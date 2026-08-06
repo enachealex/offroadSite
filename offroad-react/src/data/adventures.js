@@ -666,6 +666,7 @@ const adventures = [
   },
   {
     "id": 40,
+    "featured": true,
     "title": "Tundra Ridge View",
     "date": "September 17, 2021",
     "sortDate": "2021-09-17",
@@ -691,7 +692,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210917_173339-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBACdASoYABIAPuFgqE2opaQiMAwBEBwJZwDA3CHLiXeQy2L/US69pd2wAP6O+E9J1WVuMAU73VePswxNyN7JiZzEK1+EwKZBPnsUM6/zcKDlmLGDp3wMmJerG9suPBQ3mAzeS9/AWD04M0AAAA==",
+    "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAACQBACdASoYABIAPuFeqE2opSQiMAwBEBwJZwDA3CHLiXeQy2L/US7DfHw//QAA/o74T0nVZW4wBTvdV4+zDE3I3smJnMQrX4TApkE+exQzr/NwoOWYsYOnfAyYl6sb2y48FDeYDN5L0izQCMgAAA==",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210917_173339-320.avif 320w, /images/adventures/september-2021-weekend/20210917_173339-640.avif 640w, /images/adventures/september-2021-weekend/20210917_173339-960.avif 960w, /images/adventures/september-2021-weekend/20210917_173339-1440.avif 1440w, /images/adventures/september-2021-weekend/20210917_173339-1920.avif 1920w, /images/adventures/september-2021-weekend/20210917_173339-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210917_173339-640.jpg 640w, /images/adventures/september-2021-weekend/20210917_173339-960.jpg 960w, /images/adventures/september-2021-weekend/20210917_173339-1920.jpg 1920w"
@@ -708,7 +709,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210917_175403-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABQBACdASoYABIAPu1mqU2ppaQiMAgBMB2JZQDMHB5AqDszBl2s+uiQLPNUAP3ZZDZpaYNJ1TIENTkR2N5Tw/f+yjbiV2pQgoXlqzmnptA28vR7heuRjKB/vMOaV/c9YH0XJGDuHTyKCLgA",
+    "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAAAwBACdASoYABIAPu1qqk8ppiOiMBgIATAdiWUAzBwPIFQeMlTqYHcbndgA/dlkNmlpg0nVMgQ1ORHY3mc/Arr6Xz1YLMl2Qhnu2ne1IcwuGR5MvHCUdOIw9mfbT6BSz4kja/c7wIr/jrFZbofzc3qQAAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210917_175403-320.avif 320w, /images/adventures/september-2021-weekend/20210917_175403-640.avif 640w, /images/adventures/september-2021-weekend/20210917_175403-960.avif 960w, /images/adventures/september-2021-weekend/20210917_175403-1440.avif 1440w, /images/adventures/september-2021-weekend/20210917_175403-1920.avif 1920w, /images/adventures/september-2021-weekend/20210917_175403-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210917_175403-640.jpg 640w, /images/adventures/september-2021-weekend/20210917_175403-960.jpg 960w, /images/adventures/september-2021-weekend/20210917_175403-1920.jpg 1920w"
@@ -725,7 +726,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210917_182529-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADQBACdASoYABIAPu1kq0+ppSOiMBgIATAdiWUAvVgREIZbIwfzCNrjgWQOyOY+AAD+sBf2PjxpUANGld30LUwQ3fkSoCQsmGiAdWX49/Dcn9xaYVRui67y9EwqN3eITZ9p2rmcOV/27k/QdHCV714F2+4kok9VQFCDPYo6+q8UVjfbv+B0Jk8Im6jdvYF05wAowAAA",
+    "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBQCdASoYABIAPu1kq0+ppSOiMBgIATAdiWUAvVgQ8QtuFPtnkvWaTlChcrMmCKUfAAD+sBf2O4h4cO6Eyj/I16UA7k+8KIcHQ9pUUunqwYY/D2fH9fBC9Oavpm7xAZ2uPKYWDnLmTRTbF1VnRx1M6phsB/Ga5E0KKOk2Rvp3KYAyO37yJuo87MxKaACyoAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210917_182529-320.avif 320w, /images/adventures/september-2021-weekend/20210917_182529-640.avif 640w, /images/adventures/september-2021-weekend/20210917_182529-960.avif 960w, /images/adventures/september-2021-weekend/20210917_182529-1440.avif 1440w, /images/adventures/september-2021-weekend/20210917_182529-1920.avif 1920w, /images/adventures/september-2021-weekend/20210917_182529-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210917_182529-640.jpg 640w, /images/adventures/september-2021-weekend/20210917_182529-960.jpg 960w, /images/adventures/september-2021-weekend/20210917_182529-1920.jpg 1920w"
@@ -742,7 +743,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210917_183101-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwBACdASoYABIAPu1grVAppSQisBgIATAdiUAWHYIdnwF43CTySZ9YIwRl2e/MRAAA/lb46yHRBlXXzKMbZeCyQx8pHgvrmoDlsK/OQid3aW7djdiT/xGegVmxnK90tKup9o9jFs3TVXY8SZMkywW5yt2AEr4HLiIh5MoqORLGKxV/fUm+xcF4ygAAAA==",
+    "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADQBACdASoYABIAPu1qsFAppaSiqAqpMB2JQBYdgiM1I2cbKk4VNEpL9bW0qqjOAAD+VvjrIdEGVdfMoxtl4LJDHykeC+uagOWwr85CJ3do0cAwQfv2UIOHFoovKK+tJPNn0Zxn9/Bc3FMh4IA2m8lLoAGEFVDZLtIHZmj8TdOuby1ElSMmnxIM7dAAAA==",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210917_183101-320.avif 320w, /images/adventures/september-2021-weekend/20210917_183101-640.avif 640w, /images/adventures/september-2021-weekend/20210917_183101-960.avif 960w, /images/adventures/september-2021-weekend/20210917_183101-1440.avif 1440w, /images/adventures/september-2021-weekend/20210917_183101-1920.avif 1920w, /images/adventures/september-2021-weekend/20210917_183101-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210917_183101-640.jpg 640w, /images/adventures/september-2021-weekend/20210917_183101-960.jpg 960w, /images/adventures/september-2021-weekend/20210917_183101-1920.jpg 1920w"
@@ -759,7 +760,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210918_084817-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACwBACdASoYABIAPuVepk2pJSOiN/VYASAciWUAyJgPQxicC2T2eurwC8QeguQAAP7qyICHdG77PO59AnDlyvNIvlIM3k2NLxPOA6+svC66MFA380/L8UABPpAo4fqcYkpuoWhNhRK/OoSSpaSSrTGbKipHwAAA",
+    "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADQBACdASoYABIAPuVepk2pJSOiN/VYASAciWUAyJgPQxwaRJ84WjdK4BeJREPsEAD+6siAh3Ru+zzufQJw5crzSL5SCBR5QvRIsXZ8ckV2L3+8yubHDcuKbHsMtJ8SMvOHsZ/KFNdQmKMDtUJUtJJVp3oMgjhNoAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210918_084817-320.avif 320w, /images/adventures/september-2021-weekend/20210918_084817-640.avif 640w, /images/adventures/september-2021-weekend/20210918_084817-960.avif 960w, /images/adventures/september-2021-weekend/20210918_084817-1440.avif 1440w, /images/adventures/september-2021-weekend/20210918_084817-1920.avif 1920w, /images/adventures/september-2021-weekend/20210918_084817-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210918_084817-640.jpg 640w, /images/adventures/september-2021-weekend/20210918_084817-960.jpg 960w, /images/adventures/september-2021-weekend/20210918_084817-1920.jpg 1920w"
@@ -776,7 +777,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210918_124321-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAABwBACdASoYABIAPu1opk2ppiMiMBgMATAdiWUAyNQQ7kSDnFmO0tAg5Bj+gAD+lnvbx39NXmU71DNNGGI4XINxOAnq41DQ1UCE8laHOhWgUP2MtCsmYouaHuzCuH5YxQGQ7CAMCVHaE77HT8TvQvYyRLlz3CAAAAA=",
+    "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAACQBACdASoYABIAPu1opU2ppiMiMBgMATAdiWUAyNQQ7kSDnwRINhc/POm06AAA/pZ728d/TV5lO9QzTRhiOFyDcTgJ6uNQ0NVAhPJWhzMGwwsO8n2roOvlUnXJVweyD9yO53TE25fqiq0qTsE4ZB4zZ8LcAAAA",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210918_124321-320.avif 320w, /images/adventures/september-2021-weekend/20210918_124321-640.avif 640w, /images/adventures/september-2021-weekend/20210918_124321-960.avif 960w, /images/adventures/september-2021-weekend/20210918_124321-1440.avif 1440w, /images/adventures/september-2021-weekend/20210918_124321-1920.avif 1920w, /images/adventures/september-2021-weekend/20210918_124321-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210918_124321-640.jpg 640w, /images/adventures/september-2021-weekend/20210918_124321-960.jpg 960w, /images/adventures/september-2021-weekend/20210918_124321-1920.jpg 1920w"
@@ -793,7 +794,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210918_124954-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAwBQCdASoYABIAPu1gq1AppSOisBgIATAdiWUAwzQPRFeF7xWKFAcwB2oxDKoNZJjv4AD+q9/gv2m69DaoBX6g/4aAHrn1NidUAnboQKJgUiK1Qq2runzI2el9Q0fwAjPQu/CoJltlzgV8XH8bs3yrop/UMq5avruvKZcOWrtROURUbnC+bpJIxdIFwAAA",
+    "lqip": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAABwBQCdASoYABIAPu1iq1AppSOisBgIATAdiWUAwzQPRFeF7xWKEd0Tb9Xf1QayTGoZNMYAAP6r3+C/abr0NqgFfqD/hoAeufU2J1QCfN8m0xKB9WP64x71ZUztPsQFJm+k3+NN/x3lENGU1gleTyy+ywM3lm2RC0dsdxt4PES8AmKFwT0TRwmLAAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210918_124954-320.avif 320w, /images/adventures/september-2021-weekend/20210918_124954-640.avif 640w, /images/adventures/september-2021-weekend/20210918_124954-960.avif 960w, /images/adventures/september-2021-weekend/20210918_124954-1440.avif 1440w, /images/adventures/september-2021-weekend/20210918_124954-1920.avif 1920w, /images/adventures/september-2021-weekend/20210918_124954-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210918_124954-640.jpg 640w, /images/adventures/september-2021-weekend/20210918_124954-960.jpg 960w, /images/adventures/september-2021-weekend/20210918_124954-1920.jpg 1920w"
@@ -802,7 +803,6 @@ const adventures = [
   },
   {
     "id": 48,
-    "featured": true,
     "title": "Ridge View",
     "date": "September 18, 2021",
     "sortDate": "2021-09-18",
@@ -811,7 +811,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210918_125117-1920.jpg",
     "width": 12400,
     "height": 3216,
-    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoYAAYAPu1yrU+pp6QiMAgBMB2JQBOgBFcdrZv22IJ+d1AA9rppqh/6iWL8LIJG1Yi2hafOAKBsa0tAmGUextArxw5QkTxJlGveDu/FYGKitOR7+LWLb4/AAAA=",
+    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoYAAYAPu1qrU8ppiQiMAgBMB2JQBOgBFcdrZv0jqoarsQA9rppqh/6iWL8LIJG1Yi2hafOAKBsa0tAg735fwGKXDMW/i3Pr++XcDbbrG/AGgN68DiuZsQjAAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210918_125117-320.avif 320w, /images/adventures/september-2021-weekend/20210918_125117-640.avif 640w, /images/adventures/september-2021-weekend/20210918_125117-960.avif 960w, /images/adventures/september-2021-weekend/20210918_125117-1440.avif 1440w, /images/adventures/september-2021-weekend/20210918_125117-1920.avif 1920w, /images/adventures/september-2021-weekend/20210918_125117-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210918_125117-640.jpg 640w, /images/adventures/september-2021-weekend/20210918_125117-960.jpg 960w, /images/adventures/september-2021-weekend/20210918_125117-1920.jpg 1920w"
@@ -828,7 +828,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210918_141202-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAABQBQCdASoYABIAPu1krE6ppaQiKA1RMB2JQBWGax+EBKp1IJ7QWqZ5JorLAW1HfFpwgCAA/pGRuPieUvYTBoTHFYk/usC0wn9t054uqX6f0RG0PPXDXjHNNXRRrctgG715mYx0msGubJuBtOl42VZ/IwbKd4AginwtS26tbrlizlWwbp/s63MyOEHZOK65uupQC4sKwAA=",
+    "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADwBACdASoYABIAPu1kq06ppaQiKA1RMB2JQBbZAieFTT6y8hydu4BCt4Fp6PwaqIAA/pGRuPieUvYTBoSm3USQKmV8iXoopII9X6df8BAHrNYa8Y/89yaOYaygTVQS1JCAXrSws7bW4aDtg4LhUCWmJ1pcL3wReWOfNPLBjgTVCmHYLFg74JhPS7mAhTCuBqK1QAAA",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210918_141202-320.avif 320w, /images/adventures/september-2021-weekend/20210918_141202-640.avif 640w, /images/adventures/september-2021-weekend/20210918_141202-960.avif 960w, /images/adventures/september-2021-weekend/20210918_141202-1440.avif 1440w, /images/adventures/september-2021-weekend/20210918_141202-1920.avif 1920w, /images/adventures/september-2021-weekend/20210918_141202-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210918_141202-640.jpg 640w, /images/adventures/september-2021-weekend/20210918_141202-960.jpg 960w, /images/adventures/september-2021-weekend/20210918_141202-1920.jpg 1920w"
@@ -845,7 +845,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210919_104445-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAAAwBQCdASoYABIAPu1sq1EppaOiqAqpMB2JZADCgBEl/mnbmUxhH1NAoMg6eizMlh/WAAD+QMespVTa56kJE1Sw6waUb/NbxFJc9H0FFBu7Uh9xeH50Of5yzPCA0ot/k/QZWnEhUh21VJKxrn8GBw6q2GJKcfoubiWQ94VMQlPtixTWyFpNhD4DgqYBVCtY8dvPqCtl53U2bCebdleNdSY5tuAcoj5mBItjX6C2ov90xCALASArIAAA",
+    "lqip": "data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAADQBQCdASoYABIAPu1sq1EppaOiqAqpMB2JZAC7BAgAp3fwxEsebe8sdqTgy3Bj0u+y52hSHpgAAP5AVJ4vfx9PUe75GSNHhQyJdklEqNXC2Vka+K+W7i6mBX7AYTPZ/kxG3fVWnEhUiau/ak0sp0QLnE78UsZCoSn1z5K69OZpAR04w79uvRUOmjGWLBYxJTZlimLazBmToFSihPuSD/TKyq4/lflz8ftobP8l/LccjpZ6UJgAAA==",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210919_104445-320.avif 320w, /images/adventures/september-2021-weekend/20210919_104445-640.avif 640w, /images/adventures/september-2021-weekend/20210919_104445-960.avif 960w, /images/adventures/september-2021-weekend/20210919_104445-1440.avif 1440w, /images/adventures/september-2021-weekend/20210919_104445-1920.avif 1920w, /images/adventures/september-2021-weekend/20210919_104445-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210919_104445-640.jpg 640w, /images/adventures/september-2021-weekend/20210919_104445-960.jpg 960w, /images/adventures/september-2021-weekend/20210919_104445-1920.jpg 1920w"
@@ -862,7 +862,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210919_115245-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBACdASoYABIAPu1urlKppiQiqAgBMB2JQBUegdzFjLBnU4ZI2DNtBuZoAADcqXlbDJlHKuV09ZR6jymuQEKTLz5XaYUiEP9MVWnpfb5V/xD8c3VR5ncpj8hEz1l7yIP4a60YFRUfLipNNzpJ5OKxpRwReW7kXFjNoid3jvCGEYXQeKEUwnHztha+8ZUfFV4y4lcKBvZa21hsoCeOWoAA",
+    "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADwBACdASoYABIAPu1urlKppiQiqAgBMB2JQBUfNgAWeoPPYpvKLULnlJ8Q7fDzeCAA1AstM7wy6ybypWaEwvI/ICFJl58rtMajuWGJfl1RgRnzHroeafp6YXeuE9lrVl7yIPFtQiqE/xlqQNF8d3EfPRHdKbTcLKdiZ/ou3B3DzDlWZ4JcFNU90FtJp2Pl8ZnaVIHRKxC95bwo+26+2QAAAAA=",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210919_115245-320.avif 320w, /images/adventures/september-2021-weekend/20210919_115245-640.avif 640w, /images/adventures/september-2021-weekend/20210919_115245-960.avif 960w, /images/adventures/september-2021-weekend/20210919_115245-1440.avif 1440w, /images/adventures/september-2021-weekend/20210919_115245-1920.avif 1920w, /images/adventures/september-2021-weekend/20210919_115245-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210919_115245-640.jpg 640w, /images/adventures/september-2021-weekend/20210919_115245-960.jpg 960w, /images/adventures/september-2021-weekend/20210919_115245-1920.jpg 1920w"
