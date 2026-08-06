@@ -675,7 +675,7 @@ const adventures = [
     "image": "/images/adventures/september-2021-weekend/20210917_171521-1920.jpg",
     "width": 9248,
     "height": 6936,
-    "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAQBQCdASoYABIAPu1qrVCppaQiqAqpMB2JZQDE2A/eDUyx76DRynacy/NyJpZXVNcAAP7ZjGn0GHh+4Kh52jM4o2UAg673KqizBaEIOY6kamjDb5k4boo+HIkf2rIBZIFTn6rRoiPoMTF4N5IHvEfAKvvO2X43WaGfKgknwfdDWuVmDRN2Fgl/eGCM/AAA",
+    "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBQCdASoYABIAPu1qrVCppaQiqAqpMB2JZQDE2A/m4Ofxb/7R/LlUSlSsfxWJ2n4AAP7ZjGn0GHh+4JriQw5HWGALJrvgNoFXVYSGfZNTaF7p7CNch0K4u5JCyWzsGdeNmMz5eqEeBk4+YbtW+UW50avzEYoFth1WMV2w7uGUzq6nCXPEVqiigsLS9AegAgYoAA==",
     "srcset": {
       "avif": "/images/adventures/september-2021-weekend/20210917_171521-320.avif 320w, /images/adventures/september-2021-weekend/20210917_171521-640.avif 640w, /images/adventures/september-2021-weekend/20210917_171521-960.avif 960w, /images/adventures/september-2021-weekend/20210917_171521-1440.avif 1440w, /images/adventures/september-2021-weekend/20210917_171521-1920.avif 1920w, /images/adventures/september-2021-weekend/20210917_171521-2560.avif 2560w",
       "jpeg": "/images/adventures/september-2021-weekend/20210917_171521-640.jpg 640w, /images/adventures/september-2021-weekend/20210917_171521-960.jpg 960w, /images/adventures/september-2021-weekend/20210917_171521-1920.jpg 1920w"
