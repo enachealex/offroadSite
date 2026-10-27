@@ -1,0 +1,5 @@
+{
+  "minDurationSeconds": 60,
+  "maxVideosPerChannel": 50,
+  "channels": []
+}

@@ -1,6 +1,12 @@
-// Hand-maintained. Add a `duration` once it is known — the badge is hidden
-// while it is missing rather than showing a placeholder.
-const videos = [
+import fetchedVideos from "./youtube-videos.json";
+import overrides from "../../youtube/overrides.json";
+import { mergeVideos } from "./mergeVideos";
+
+// Hand-curated entries. These keep their own titles and subtitles even once
+// the same video arrives from YouTube; the fetched snapshot only fills in what
+// is missing here, such as durations and publish dates. Videos uploaded to the
+// channels in youtube/channels.json appear without being listed here at all.
+const manualVideos = [
   {
     key: "wind-mills-ridge",
     title: "Wind Mills and Ridge",
@@ -53,6 +59,9 @@ const videos = [
   },
 ];
 
+const videos = mergeVideos(manualVideos, fetchedVideos, overrides);
+
+// Newest playable video, since the merged list is sorted by publish date.
 export const featuredVideo = videos.find((video) => video.youtubeId);
 
 export default videos;

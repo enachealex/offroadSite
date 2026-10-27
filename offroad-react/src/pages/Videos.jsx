@@ -2,6 +2,21 @@ import { useMemo, useState } from "react";
 import videoCatalog from "../data/videos";
 import "./Videos.css";
 
+const monthFormat = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" });
+
+// Only worth naming the channel once videos come from more than one.
+const showChannel =
+  new Set(videoCatalog.map((video) => video.channelTitle).filter(Boolean)).size > 1;
+
+function cardMeta(video) {
+  return [
+    showChannel ? video.channelTitle : "",
+    video.publishedAt ? monthFormat.format(new Date(video.publishedAt)) : "",
+  ]
+    .filter(Boolean)
+    .join(" · ");
+}
+
 export default function Videos() {
   const [selectedKey, setSelectedKey] = useState("");
 
@@ -92,7 +107,8 @@ export default function Videos() {
                   </div>
                   <div className="video-card-meta">
                     <h3>{video.title}</h3>
-                    <p>{video.subtitle}</p>
+                    {video.subtitle && <p>{video.subtitle}</p>}
+                    {cardMeta(video) && <p className="video-card-date">{cardMeta(video)}</p>}
                   </div>
                 </button>
               );

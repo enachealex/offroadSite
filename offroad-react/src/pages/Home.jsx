@@ -128,7 +128,7 @@ export default function Home() {
             <div className="video-copy">
               <p className="section-eyebrow">From the channel</p>
               <h2>{featuredVideo.title}</h2>
-              <p>{featuredVideo.subtitle}</p>
+              {featuredVideo.subtitle && <p>{featuredVideo.subtitle}</p>}
               <Link to="/videos" className="btn-secondary">Watch Videos</Link>
             </div>
           </div>

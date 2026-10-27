@@ -5,9 +5,13 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Daily check for new YouTube uploads. Off the top of the hour, since
+  # scheduled jobs at :00 are the ones GitHub most often delays.
+  schedule:
+    - cron: "17 13 * * *"
 
 permissions:
-  contents: read
+  contents: write # commit the refreshed video list
   pages: write
   id-token: write
 
@@ -18,6 +22,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.decide.outputs.deploy }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,13 +40,42 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: offroad-react/package-lock.json
 
       - name: Install dependencies
         working-directory: offroad-react
         run: npm ci
+
+      - name: Test
+        working-directory: offroad-react
+        run: npm test
+
+      # A YouTube outage must not block deploying code changes, so a failed
+      # fetch only warns. The script leaves the committed list untouched on
+      # failure, and the site is built from that.
+      - name: Refresh YouTube videos
+        id: videos
+        working-directory: offroad-react
+        continue-on-error: true
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: npm run videos
+
+      # Pushes made with the workflow's own token don't trigger another run,
+      # so this can't loop; the fresh list is deployed by this same run.
+      - name: Commit video list
+        if: steps.videos.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add offroad-react/src/data/youtube-videos.json
+          git commit -m "Refresh YouTube video list"
+          git push origin "HEAD:$BRANCH"
 
       - name: Build
         working-directory: offroad-react
@@ -52,13 +87,35 @@ jobs:
             cp CNAME offroad-react/dist/CNAME
           fi
 
+      # Only main deploys, so the workflow can be dispatched on a branch to
+      # test it. Scheduled runs exist only to pick up new videos, so they
+      # skip the deploy when nothing changed.
+      - name: Decide whether to deploy
+        id: decide
+        env:
+          REF: ${{ github.ref }}
+          EVENT: ${{ github.event_name }}
+          CHANGED: ${{ steps.videos.outputs.changed }}
+        run: |
+          if [ "$REF" != "refs/heads/main" ]; then
+            echo "Not on main — skipping deploy."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT" = "schedule" ] && [ "$CHANGED" != "true" ]; then
+            echo "No new videos — skipping deploy."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Upload Pages artifact
+        if: steps.decide.outputs.deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: offroad-react/dist
 
   deploy:
     needs: build
+    if: needs.build.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
