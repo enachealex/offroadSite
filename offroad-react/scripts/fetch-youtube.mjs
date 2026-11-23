@@ -168,6 +168,8 @@ const ERROR_HINTS = {
   API_KEY_INVALID: "The key is not valid — copy it again into the YOUTUBE_API_KEY secret.",
   keyInvalid: "The key is not valid — copy it again into the YOUTUBE_API_KEY secret.",
   quotaExceeded: "The daily API quota is used up; it resets at midnight Pacific time.",
+  ACCESS_DENIED:
+    "Google refused the key for this API. In the Google Cloud project named in the details above, check that YouTube Data API v3 is enabled, the key's API restrictions include it, and Application restrictions are None.",
 };
 
 /** Build a readable error from a Google API error body, key redacted. */
@@ -178,10 +180,16 @@ export function describeApiError(endpoint, status, body, redact = (text) => text
   ].filter((reason, index, all) => reason && all.indexOf(reason) === index);
   const message = body?.error?.message ?? "";
   const hint = reasons.map((reason) => ERROR_HINTS[reason]).find(Boolean);
+  // ErrorInfo metadata says which service and Google Cloud project the key
+  // was checked against — usually the fastest way to spot a mismatch.
+  const metadata = (body?.error?.details ?? [])
+    .flatMap((detail) => Object.entries(detail?.metadata ?? {}))
+    .map(([name, value]) => `${name}=${value}`);
 
   // Only what Google sent back can contain the key; the hint is our own text.
   const fromGoogle = redact(
-    `${reasons.length ? ` (${reasons.join(", ")})` : ""}${message ? ` — ${message}` : ""}`,
+    `${reasons.length ? ` (${reasons.join(", ")})` : ""}${message ? ` — ${message}` : ""}` +
+      `${metadata.length ? `\nDetails: ${metadata.join(", ")}` : ""}`,
   );
   return `${endpoint}: HTTP ${status}${fromGoogle}${hint ? `\nFix: ${hint}` : ""}`;
 }

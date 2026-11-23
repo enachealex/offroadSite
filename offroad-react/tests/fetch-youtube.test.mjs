@@ -240,6 +240,15 @@ test("describeApiError surfaces Google's specific reason and how to fix it", () 
   });
   assert.match(disabled, /Fix: YouTube Data API v3 is not enabled/);
 
+  const denied = describeApiError("channels", 403, {
+    error: {
+      message: "Permission denied on the service.",
+      details: [{ reason: "ACCESS_DENIED", metadata: { service: "youtube.googleapis.com", consumer: "projects/123" } }],
+    },
+  });
+  assert.match(denied, /Details: service=youtube\.googleapis\.com, consumer=projects\/123/);
+  assert.match(denied, /Fix: Google refused the key/);
+
   assert.equal(describeApiError("videos", 500, {}), "videos: HTTP 500", "no body, no hint");
   assert.ok(!describeApiError("x", 400, { error: { message: "bad k3y" } }, (t) => t.split("k3y").join("***")).includes("k3y"));
 });
