@@ -62,12 +62,62 @@ and regenerates `src/data/adventures.js`.
    ```
 
    `featured: true` marks the home page hero. Exactly one photo should have it.
+   `date` (`"2021-09-17"`) sets the capture date when the filename doesn't
+   carry one. Imported photos get it filled in automatically.
 
 4. Run `npm run photos`, then commit both `photos/` and the regenerated
    `public/images/adventures/` and `src/data/adventures.js`.
 
 A folder whose name starts with `_` is skipped, which is how masters are kept
 in the repo without publishing them (see `photos/_unpublished/`).
+
+### Importing from Google Photos
+
+```bash
+npm run import-photos -- "October 2023 Trip"
+```
+
+This opens Google Photos in your browser. Pick the trip's photos there (a
+shared album works well: open it and select all), press **Done**, and they
+download into `photos/October 2023 Trip/`. A new name creates a new trip;
+an existing name adds to it. Then follow steps 2–4 above: add titles, run
+`npm run photos`, and commit.
+
+- **Re-running is safe.** Photos are remembered by their Google Photos ID
+  (`googlePhotosId` in `photos.json`), so picking the whole album again
+  only downloads the new ones.
+- **Dates** come from each photo's EXIF, so photos sort correctly even with
+  names like `IMG_1234.jpg`. Untitled photos show as "Photo N".
+- **iPhone HEIC** photos are converted to JPEG.
+- **Videos are skipped.** Upload them to YouTube, and the Videos page picks
+  them up (see below).
+- **No location data.** Google strips GPS from downloads.
+
+Google stopped letting apps read albums directly in 2025, so this uses the
+Google Photos Picker. You choose the photos, and nothing is guessed. It runs
+on your own computer, because it needs your browser to sign in.
+
+#### One-time setup
+
+Use the same Google Cloud project as the YouTube key:
+
+1. **APIs & Services → Library**: enable **Google Photos Picker API**.
+2. **APIs & Services → OAuth consent screen** (Google Auth Platform):
+   - User type **External**, publishing status **Testing**.
+   - Under **Audience → Test users**, add the Google account that owns the
+     photos.
+3. **APIs & Services → Credentials → Create credentials → OAuth client ID**:
+   choose application type **Desktop app**. Download the JSON and save it as
+   `offroad-react/.google-oauth-client.json`.
+
+The first run asks you to sign in. Google shows "Google hasn't verified this
+app", because it's your own unpublished app: choose **Continue**. The sign-in
+is saved in `offroad-react/.google-photos-token.json`.
+
+While the app is in Testing, Google expires the sign-in after 7 days. The next
+run then simply asks again.
+
+Both files are gitignored. **Never commit them.**
 
 ### Output format
 

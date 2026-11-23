@@ -15,7 +15,11 @@
  *
  * Per-trip metadata (both optional):
  *   trip.json    { "name": "...", "description": "...", "date": "2021-06-05" }
- *   photos.json  { "<file>.jpg": { "title": "...", "description": "..." } }
+ *   photos.json  { "<file>.jpg": { "title": "...", "description": "...",
+ *                                  "date": "2021-09-17" } }
+ *
+ * The date comes from photos.json when set (import-photos fills it in from
+ * the photo's EXIF), otherwise from a YYYYMMDD run in the filename.
  */
 
 import fs from "node:fs";
@@ -84,10 +88,21 @@ function dateFromFilename(filename) {
   };
 }
 
+/** A "date" in photos.json (YYYY-MM-DD) wins over the filename. */
+function dateFromMeta(value) {
+  const m = typeof value === "string" && value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return m ? dateFromFilename(`${m[1]}${m[2]}${m[3]}`) : null;
+}
+
+// Names cameras and phones give files — 20210917_171521_HDR, PXL_20230612_
+// 183012345.MP, IMG_1234, DSC01234 — which say nothing about the photo.
+const CAMERA_NAME =
+  /^(?:PXL|IMG|DSCN?|DSCF|MVIMG|GOPR|DJI|P)?[_-]?\d{4,}(?:[._-](?:\d+|HDR|PANO|MP|NIGHT|PORTRAIT|COVER|BURST\w*|EDITED))*$/i;
+
 /** Fall back to a readable title when photos.json has no entry. */
 function titleFromFilename(filename) {
   const base = path.basename(filename, path.extname(filename));
-  if (/^\d{8}[_-]?\d*(_HDR)?(-PANO)?$/i.test(base)) return null;
+  if (CAMERA_NAME.test(base)) return null;
   return base.replace(/[_-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
@@ -238,7 +253,7 @@ async function main() {
     for (const image of images) {
       const baseName = path.basename(image, path.extname(image));
       const meta = photoMeta[image] || {};
-      const captured = dateFromFilename(image);
+      const captured = dateFromMeta(meta.date) ?? dateFromFilename(image);
 
       const variants = await renderVariants(path.join(tripDir, image), outDir, baseName);
       totalRendered += variants.rendered;
