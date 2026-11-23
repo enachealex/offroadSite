@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Google sign-in for npm run import-photos (OAuth client and tokens)
+.google-photos/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

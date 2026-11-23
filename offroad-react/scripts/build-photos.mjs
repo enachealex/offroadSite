@@ -87,7 +87,9 @@ function dateFromFilename(filename) {
 /** Fall back to a readable title when photos.json has no entry. */
 function titleFromFilename(filename) {
   const base = path.basename(filename, path.extname(filename));
-  if (/^\d{8}[_-]?\d*(_HDR)?(-PANO)?$/i.test(base)) return null;
+  // A trailing -2, -3… is how import-google-photos.mjs tells apart shots
+  // taken in the same second.
+  if (/^\d{8}[_-]?\d*(_HDR)?(-PANO)?(-\d+)?$/i.test(base)) return null;
   return base.replace(/[_-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
