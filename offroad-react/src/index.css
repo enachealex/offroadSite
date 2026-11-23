@@ -7,6 +7,20 @@
 
 html {
   scroll-behavior: smooth;
+  /* Reserve the scrollbar's space on every page, tall or short. Without
+     this, moving between a page that scrolls and one that doesn't changes
+     the viewport width by the scrollbar's width, and the fixed navbar's
+     right-aligned links jump sideways. It also covers the scroll lock the
+     lightbox and mobile menu apply, which hides the scrollbar. */
+  scrollbar-gutter: stable;
+}
+
+/* Browsers without scrollbar-gutter get the same stability by always
+   showing the scrollbar. */
+@supports not (scrollbar-gutter: stable) {
+  html {
+    overflow-y: scroll;
+  }
 }
 
 body {
