@@ -152,6 +152,8 @@
 
 .videos-player-wrapper {
   margin-top: 1.1rem;
+  /* Clear the fixed navbar when scrolled into view. */
+  scroll-margin-top: 80px;
 }
 
 .videos-player-empty {

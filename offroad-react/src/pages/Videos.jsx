@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import videoCatalog from "../data/videos";
 import "./Videos.css";
 
@@ -18,14 +19,34 @@ function cardMeta(video) {
 }
 
 export default function Videos() {
-  const [selectedKey, setSelectedKey] = useState("");
+  // The playing video lives in the URL (#/videos?v=<id>), so the home page
+  // can link straight to a playing video and any video can be shared.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedId = searchParams.get("v") ?? "";
 
   const origin = globalThis.window?.location.origin ?? "";
 
   const selectedVideo = useMemo(
-    () => videoCatalog.find((video) => video.key === selectedKey) ?? null,
-    [selectedKey],
+    () => (selectedId ? videoCatalog.find((video) => video.youtubeId === selectedId) : null) ?? null,
+    [selectedId],
   );
+
+  const playerRef = useRef(null);
+
+  // Replace rather than push, so Back leaves the page instead of stepping
+  // through every video that was tried.
+  const selectVideo = (youtubeId) => {
+    setSearchParams({ v: youtubeId }, { replace: true });
+
+    // On narrow screens the list sits below the player, so a video picked
+    // from further down would start playing off-screen. Bring the player
+    // into view when it isn't already.
+    const box = playerRef.current?.getBoundingClientRect();
+    const navbarHeight = document.querySelector(".navbar")?.offsetHeight ?? 0;
+    if (box && (box.top < navbarHeight || box.bottom > globalThis.innerHeight)) {
+      playerRef.current.scrollIntoView({ block: "start" });
+    }
+  };
 
   const canPlaySelectedVideo = Boolean(selectedVideo?.youtubeId);
   const watchUrl = canPlaySelectedVideo
@@ -41,7 +62,7 @@ export default function Videos() {
     <div className="videos-page">
       <div className="videos-layout">
         <main className="videos-main">
-          <section className="videos-player-wrapper" aria-label="Selected offroad video">
+          <section className="videos-player-wrapper" ref={playerRef} aria-label="Selected offroad video">
             {canPlaySelectedVideo ? (
               <>
                 <div className="videos-player-shell">
@@ -75,8 +96,8 @@ export default function Videos() {
           <h3 className="videos-sidebar-heading">Videos</h3>
           <div className="videos-list">
             {videoCatalog.map((video) => {
-              const isSelected = selectedKey === video.key;
               const isAvailable = Boolean(video.youtubeId);
+              const isSelected = isAvailable && selectedId === video.youtubeId;
               const thumbnailUrl = isAvailable
                 ? `https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`
                 : "";
@@ -86,7 +107,7 @@ export default function Videos() {
                   key={video.key}
                   type="button"
                   className={`video-card video-list-card ${isSelected ? "is-selected" : ""}`}
-                  onClick={() => isAvailable && setSelectedKey(video.key)}
+                  onClick={() => isAvailable && selectVideo(video.youtubeId)}
                   disabled={!isAvailable}
                   aria-pressed={isSelected}
                 >

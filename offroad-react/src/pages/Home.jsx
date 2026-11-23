@@ -117,7 +117,12 @@ export default function Home() {
       {featuredVideo && (
         <section className="section video-section">
           <div className="video-panel">
-            <Link to="/videos" className="video-thumb" aria-label={`Watch ${featuredVideo.title}`}>
+            {/* Opens the Videos page with this video already playing. */}
+            <Link
+              to={`/videos?v=${featuredVideo.youtubeId}`}
+              className="video-thumb"
+              aria-label={`Play ${featuredVideo.title}`}
+            >
               <img
                 src={`https://i.ytimg.com/vi/${featuredVideo.youtubeId}/hqdefault.jpg`}
                 alt=""

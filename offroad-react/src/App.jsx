@@ -1,5 +1,12 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
-import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  HashRouter,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  useNavigationType,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -10,12 +17,29 @@ const About = lazy(() => import("./pages/About"));
 
 function AppShell() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const navigationType = useNavigationType();
   const touchStateRef = useRef({
     active: false,
     startX: 0,
     startY: 0,
     startedAt: 0,
   });
+
+  // Start each newly opened page at the top. Without this a page keeps the
+  // previous page's scroll position, so following the home page's featured
+  // video left the player off-screen on phones. Back/Forward (POP) is left
+  // alone so the browser can restore where the visitor was.
+  const lastPathname = useRef(pathname);
+  useEffect(() => {
+    // Only a change of page counts — picking a video rewrites ?v= on the
+    // same page and must not jump the scroll position.
+    const pageChanged = lastPathname.current !== pathname;
+    lastPathname.current = pathname;
+    if (pageChanged && navigationType !== "POP") {
+      globalThis.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [pathname, navigationType]);
 
   useEffect(() => {
     const supportsTouch = "ontouchstart" in globalThis;
