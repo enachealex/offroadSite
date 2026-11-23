@@ -5,6 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
+  describeApiError,
   fetchAll,
   formatDuration,
   parseIsoDuration,
@@ -215,6 +216,32 @@ test("fetchAll fails fast on quota errors and never leaks the key", async () => 
       assert.equal(requests.length, 1, "403 is not retried");
     },
   );
+});
+
+test("describeApiError surfaces Google's specific reason and how to fix it", () => {
+  // The shape Google returns when a key's API restrictions exclude YouTube:
+  // the top-level message alone doesn't say what's wrong.
+  const body = {
+    error: {
+      code: 403,
+      message: "Permission denied on the service.",
+      errors: [{ reason: "forbidden" }],
+      details: [
+        { "@type": "type.googleapis.com/google.rpc.ErrorInfo", reason: "API_KEY_SERVICE_BLOCKED", domain: "googleapis.com" },
+      ],
+    },
+  };
+  const text = describeApiError("channels", 403, body);
+  assert.match(text, /HTTP 403 \(forbidden, API_KEY_SERVICE_BLOCKED\)/);
+  assert.match(text, /Fix: The key's API restrictions don't include YouTube Data API v3/);
+
+  const disabled = describeApiError("channels", 403, {
+    error: { message: "x", errors: [{ reason: "accessNotConfigured" }], details: [{ reason: "SERVICE_DISABLED" }] },
+  });
+  assert.match(disabled, /Fix: YouTube Data API v3 is not enabled/);
+
+  assert.equal(describeApiError("videos", 500, {}), "videos: HTTP 500", "no body, no hint");
+  assert.ok(!describeApiError("x", 400, { error: { message: "bad k3y" } }, (t) => t.split("k3y").join("***")).includes("k3y"));
 });
 
 test("fetchAll rejects ambiguous channel config", async () => {

@@ -149,6 +149,43 @@ function validateChannel(channel, index) {
   }
 }
 
+// Google's specific error codes, mapped to what to change. The top-level
+// message is often just "Permission denied on the service", which doesn't
+// say which setting is wrong.
+const ERROR_HINTS = {
+  SERVICE_DISABLED:
+    "YouTube Data API v3 is not enabled in the key's Google Cloud project — enable it under APIs & Services → Library.",
+  accessNotConfigured:
+    "YouTube Data API v3 is not enabled in the key's Google Cloud project — enable it under APIs & Services → Library.",
+  API_KEY_SERVICE_BLOCKED:
+    "The key's API restrictions don't include YouTube Data API v3 — edit the key and tick it under API restrictions.",
+  API_KEY_HTTP_REFERRER_BLOCKED:
+    "The key is restricted to websites — set its Application restrictions to None; the workflow runs on GitHub's servers.",
+  API_KEY_IP_ADDRESS_BLOCKED:
+    "The key is restricted to IP addresses — set its Application restrictions to None; GitHub's runners have no fixed IP.",
+  API_KEY_ANDROID_APP_BLOCKED: "The key is restricted to Android apps — set its Application restrictions to None.",
+  API_KEY_IOS_APP_BLOCKED: "The key is restricted to iOS apps — set its Application restrictions to None.",
+  API_KEY_INVALID: "The key is not valid — copy it again into the YOUTUBE_API_KEY secret.",
+  keyInvalid: "The key is not valid — copy it again into the YOUTUBE_API_KEY secret.",
+  quotaExceeded: "The daily API quota is used up; it resets at midnight Pacific time.",
+};
+
+/** Build a readable error from a Google API error body, key redacted. */
+export function describeApiError(endpoint, status, body, redact = (text) => text) {
+  const reasons = [
+    body?.error?.errors?.[0]?.reason,
+    ...(body?.error?.details ?? []).map((detail) => detail?.reason),
+  ].filter((reason, index, all) => reason && all.indexOf(reason) === index);
+  const message = body?.error?.message ?? "";
+  const hint = reasons.map((reason) => ERROR_HINTS[reason]).find(Boolean);
+
+  // Only what Google sent back can contain the key; the hint is our own text.
+  const fromGoogle = redact(
+    `${reasons.length ? ` (${reasons.join(", ")})` : ""}${message ? ` — ${message}` : ""}`,
+  );
+  return `${endpoint}: HTTP ${status}${fromGoogle}${hint ? `\nFix: ${hint}` : ""}`;
+}
+
 async function callApi(endpoint, params, key, opts) {
   const url = new URL(`${opts.apiBase}/${endpoint}`);
   for (const [name, value] of Object.entries(params)) {
@@ -174,17 +211,13 @@ async function callApi(endpoint, params, key, opts) {
     if (response.ok) return response.json();
 
     const body = await response.json().catch(() => ({}));
-    const reason = body?.error?.errors?.[0]?.reason;
-    const message = body?.error?.message ?? response.statusText;
     const retryable = response.status === 429 || response.status >= 500;
 
     if (retryable && attempt < MAX_ATTEMPTS) {
       await sleep(opts.retryDelayMs * 2 ** (attempt - 1));
       continue;
     }
-    throw new Error(
-      `${endpoint}: HTTP ${response.status}${reason ? ` (${reason})` : ""} — ${redact(message)}`,
-    );
+    throw new Error(describeApiError(endpoint, response.status, body, redact));
   }
 }
 
@@ -342,7 +375,10 @@ async function main() {
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
-    console.log(inActions ? `::error::${error.message}` : `Error: ${error.message}`);
+    // Workflow commands end at a newline, so encode them to keep the "Fix:"
+    // line inside the annotation.
+    const annotation = error.message.replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
+    console.log(inActions ? `::error::${annotation}` : `Error: ${error.message}`);
     console.log("The existing video list was left unchanged.");
     process.exit(1);
   });
