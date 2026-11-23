@@ -169,7 +169,7 @@ const ERROR_HINTS = {
   keyInvalid: "The key is not valid — copy it again into the YOUTUBE_API_KEY secret.",
   quotaExceeded: "The daily API quota is used up; it resets at midnight Pacific time.",
   ACCESS_DENIED:
-    "Google refused the key for this API. In the Google Cloud project named in the details above, check that YouTube Data API v3 is enabled, the key's API restrictions include it, and Application restrictions are None.",
+    "Google refused the key for this API. In the Google Cloud project the key was created in, check that YouTube Data API v3 is enabled, the key's API restrictions include it, and Application restrictions are None. Changes can take a few minutes to apply.",
 };
 
 /** Build a readable error from a Google API error body, key redacted. */
