@@ -1,5 +1,8 @@
 {
   "minDurationSeconds": 60,
   "maxVideosPerChannel": 50,
-  "channels": []
+  "channels": [
+    { "handle": "@BeniaminoEnaku-ns5id", "label": "Beniamino Enaku" },
+    { "handle": "@explorepnw3185", "label": "Explore PNW" }
+  ]
 }
