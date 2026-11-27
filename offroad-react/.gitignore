@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+
+# Google Photos import credentials (scripts/import-photos.mjs). Never commit.
+.google-oauth-client.json
+.google-photos-token.json
