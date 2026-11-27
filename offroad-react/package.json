@@ -10,7 +10,6 @@
     "test": "node --test",
     "preview": "vite preview",
     "photos": "node scripts/build-photos.mjs",
-    "import-photos": "node scripts/import-google-photos.mjs",
     "videos": "node scripts/fetch-youtube.mjs"
   },
   "dependencies": {

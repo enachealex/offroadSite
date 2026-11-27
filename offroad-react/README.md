@@ -21,7 +21,6 @@ npm run dev
 | `npm run lint`    | ESLint over the whole project                           |
 | `npm test`        | Unit and integration tests (`tests/`)                   |
 | `npm run photos`  | Rebuild image derivatives and `src/data/adventures.js`  |
-| `npm run import-photos -- "<Trip>"` | Pick photos in Google Photos and download them into `photos/<Trip>/` |
 | `npm run videos`  | Pull new uploads from YouTube (needs `YOUTUBE_API_KEY`) |
 
 ## How photos work
@@ -69,54 +68,6 @@ and regenerates `src/data/adventures.js`.
 
 A folder whose name starts with `_` is skipped, which is how masters are kept
 in the repo without publishing them (see `photos/_unpublished/`).
-
-### Importing from Google Photos
-
-Instead of copying files by hand, you can pick a trip's photos in Google Photos:
-
-```bash
-npm run import-photos -- "October 2026"
-```
-
-Your browser opens Google Photos. Select the photos, press **Done**, and they
-are downloaded into `photos/October 2026/`. Then continue from step 2 above
-(captions, `npm run photos`, commit).
-
-- **Only what you pick is shared.** The script uses the Google Photos Picker
-  API and never sees the rest of your library.
-- **Photo formats.** Photos arrive as JPEG, PNG or WebP, the formats the
-  pipeline reads. HEIC photos are fetched as a full-size JPEG instead.
-- **Location data.** Google removes GPS location from downloaded photos.
-- **Filenames and dates.** Photos are named by capture time, like the
-  existing masters: `IMG_1234.jpg` becomes `20261004_143210.jpg`, in this
-  computer's time zone. The gallery dates them and shows no filename caption.
-  Shots from the same second get `-2`, `-3`. The original name is recorded
-  in `google-photos.json`.
-- **Videos are skipped.** The site's videos come from YouTube.
-- **Re-running is safe.** `photos/<Trip>/google-photos.json` records what was
-  imported, so picking the same photo again doesn't duplicate it. To import a
-  photo again after deleting it, remove its entry from that file.
-- **Options.** `--max N` limits how many items can be picked, and
-  `--no-browser` prints the links instead of opening them.
-
-**One-time setup** (about five minutes, in the [Google Cloud console](https://console.cloud.google.com/)):
-
-1. Create or select a project, then go to **APIs & Services → Library**.
-   Enable **Google Photos Picker API**. This is not the "Google Picker API",
-   which is a different product.
-2. Under **APIs & Services → OAuth consent screen**, set it up as
-   **External** and add your own Google account as a test user.
-3. Under **APIs & Services → Credentials**, choose **Create credentials →
-   OAuth client ID** with application type **Desktop app**. A "Web
-   application" client won't work.
-4. Download the client's JSON and save it as
-   `offroad-react/.google-photos/client_secret.json`. That folder is
-   gitignored, and your sign-in token is stored there too.
-
-The first run asks you to sign in. While the consent screen is in
-**Testing** status, Google ends the saved sign-in after 7 days, so you'll be
-asked to sign in again about weekly. That's expected. Publishing the consent
-screen removes the limit, but needs Google's verification for this scope.
 
 ### Output format
 
